@@ -75,7 +75,27 @@ def regex_adicao():
     print(mo2.group())
     
     mo3 = batRegex.search('The Adventures of Batman')
-    print(mo3 == None)   
+    print(mo3 == None)
+    
+
+def regex_freq():
+    haRegex = re.compile(r'(Ha){3}')    # frequencia exata de quantos Ha devem aparecer {3, 5}, min e max
+    mo1 = haRegex.search('HaHaHa')
+    print(mo1.group())
+    
+    mo2 = haRegex.search('Ha')  # se aparecer apena um já não é valido, tem q ser 3 exato
+    print(mo2 == None)       
+
+
+def regex_findall():
+    #metodo search so retorna o primeiro valor encontrado na string, já o findall retorna todos em uma lista
+    phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d') # não tem nenhum grupo
+    mo = phoneNumRegex.findall('Cell: 415-555-9999 Work: 212-555-0000')
+    print(mo)
+    
+    phoneNumRegex = re.compile(r'(\d\d\d)-(\d\d\d)-(\d\d\d\d)') # com grupos, retorna um lista de tuplas
+    mo = phoneNumRegex.findall('Cell: 415-555-9999 Work: 212-555-0000')
+    print(mo)
 
     
 if __name__ == '__main__':
@@ -106,6 +126,19 @@ if __name__ == '__main__':
     regex_adicao()
     print()
     print('='*20)
+    
+    regex_freq()
+    print()
+    print('='*20)
+    
+    regex_findall()
+    print()
+    print('='*20)
+    
+    xmasRegex = re.compile(r'\d+\s\w+') 
+    #(\d+) um ou mais digito, (\s) seguido por um espaço, (\w+) um ou mais caracteres
+    mo = xmasRegex.findall('12 drummers, 11 pipers, 10 lords, 9 ladies, 8 maids, 7 swans, 6 geese, 5 rings, 4 birds, 3 hens, 2 doves, 1 partridge')
+    print(mo)
     
     
       
