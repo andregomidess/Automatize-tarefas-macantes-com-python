@@ -1,5 +1,5 @@
 import re
-
+import requests
 
 def regex():
     phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
@@ -242,5 +242,4 @@ if __name__ == '__main__':
                             (\s*(ext|x|ext.)\s*\d{2,5})?
                             )''', re.VERBOSE)
     
-    
-      
+     
