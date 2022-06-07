@@ -136,6 +136,15 @@ def caractere_curinga_quebra_linha():
     mo = newlineRegex.search('Serve the public trust.\nProtect the innocent.\nUphold the law.').group()
     print(mo)   
 
+def substitui_string():
+    namesRegex = re.compile(r'Agent \w+')
+    mo = namesRegex.sub('CENSORED', 'Agent Alice gave the secret documents to Agent Bob.')
+    print(mo)
+    
+    agentNamesRegex = re.compile(r'Agent (\w)\w*')  #string Agent seguido pela primeira char e depois o resto tae o espaço
+    mo = agentNamesRegex.sub(r'\1****', 'Agent Alice told Agent Carol that Agent Eve knew Agent Bob was a double agent.')
+    print(mo) # substitui 
+
     
 if __name__ == '__main__':
     regex()
@@ -208,7 +217,30 @@ if __name__ == '__main__':
     print()
     print('='*20)
     
-    caractere_curinga_quebra_linha() 
+    caractere_curinga_quebra_linha()
+    print()
+    print('='*20)
+    
+    # para não ter problemas em caçar palavras com letras maiusculas ou minusculas use o re.I 
+    robocop = re.compile(r'robocop', re.I)
+    mo = robocop.search('RoboCop is part man, part machine, all cop.').group()
+    print(mo)
+    mo = robocop.search('ROBOCOP is part man, part machine, all cop.').group()
+    print(mo)
+    mo = robocop.search('Al, why does your programming book talk about robocop somuch?').group()
+    print(mo)
+    print()
+    print('='*20)
+    
+    substitui_string()
+    
+    phoneRegex = re.compile(r'''((\d{3}|\(\d{3}\))?
+                            (\s|-|\.)?
+                            \d{3}
+                            (\s|-|\.)
+                            \d{4}
+                            (\s*(ext|x|ext.)\s*\d{2,5})?
+                            )''', re.VERBOSE)
     
     
       
