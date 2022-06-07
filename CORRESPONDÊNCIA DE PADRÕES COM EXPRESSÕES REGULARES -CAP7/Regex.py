@@ -96,6 +96,45 @@ def regex_findall():
     phoneNumRegex = re.compile(r'(\d\d\d)-(\d\d\d)-(\d\d\d\d)') # com grupos, retorna um lista de tuplas
     mo = phoneNumRegex.findall('Cell: 415-555-9999 Work: 212-555-0000')
     print(mo)
+    
+    
+def regex_propria_classe():
+    vowelRegex = re.compile(r'[aeiouAEIOU]') #vai pegar apenas as vogais
+    mo = vowelRegex.findall('RoboCop eats baby food. BABY FOOD.')
+    print(mo)
+    
+    consonantRegex = re.compile(r'[^aeiouAEIOU]') # o ^ serve para fazer a negação de td que está dentro do colchetes, ou seja vai pegar tds as consoantes
+    mo1 = consonantRegex.findall('RoboCop eats baby food. BABY FOOD.')
+    print(mo1)        
+
+
+def caractere_curinga():
+    atRegex = re.compile(r'.at')    #vai pegar todos .at, no qual o . é substituido por qualquer letra ou numero
+    mo = atRegex.findall('The cat in the hat sat on the flat mat.')
+    print(mo)
+    
+    nameRegex = re.compile(r'First Name: (.*) Last Name: (.*)')
+    mo = nameRegex.search('First Name: Al Last Name: Sweigart')
+    print(mo.group(1))
+    print(mo.group(2))
+    
+    nongreedyRegex = re.compile(r'<.*?>')
+    mo = nongreedyRegex.search('<To serve man> for dinner.>')
+    print(mo.group())   #nongreedy, menor string possivel
+    
+    greedyRegex = re.compile(r'<.*>')
+    mo = greedyRegex.search('<To serve man> for dinner.>')
+    print(mo.group()) #greedy, maior string possível
+    
+    
+def caractere_curinga_quebra_linha():
+    newlineRegex = re.compile('.*') # sem o re.DOTALL ele para no primeiro \n
+    mo = newlineRegex.search('Serve the public trust.\nProtect the innocent.\nUphold the law.').group()
+    print(mo)  
+    
+    newlineRegex = re.compile('.*', re.DOTALL)  #com re.DOTALL ele imprime certo
+    mo = newlineRegex.search('Serve the public trust.\nProtect the innocent.\nUphold the law.').group()
+    print(mo)   
 
     
 if __name__ == '__main__':
@@ -139,6 +178,37 @@ if __name__ == '__main__':
     #(\d+) um ou mais digito, (\s) seguido por um espaço, (\w+) um ou mais caracteres
     mo = xmasRegex.findall('12 drummers, 11 pipers, 10 lords, 9 ladies, 8 maids, 7 swans, 6 geese, 5 rings, 4 birds, 3 hens, 2 doves, 1 partridge')
     print(mo)
+    
+    regex_propria_classe()
+    print()
+    print('='*20)
+    
+    beginsWithHello = re.compile(r'^Hello') 
+    # o ^ pode ser usado no início de uma regex para indicar que uma correspondência deve ocorrer no início de um texto pesquisado
+    mo = beginsWithHello.search('Hello world!')
+    print(mo)
+    
+    endsWithNumber = re.compile(r'\d$')
+    #A string r'\d$' de expressão regular corresponde a strings que terminem com um caractere numérico de 0 a 9
+    mo = endsWithNumber.search('Your number is 42')
+    print(mo)
+    
+    wholeStringIsNum = re.compile(r'^\d+$')
+    #A string r'^\d+$' de expressão regular corresponde a strings que comecem e terminem com um ou mais caracteres numéricos.
+    mo = wholeStringIsNum.search('1234567890')
+    print(mo)
+    mo = wholeStringIsNum.search('12345xyz67890') == None
+    print(mo)
+    
+    
+    print()
+    print('='*20)
+    
+    caractere_curinga() #todos caracteres menos o quebra linha (\n)
+    print()
+    print('='*20)
+    
+    caractere_curinga_quebra_linha() 
     
     
       
