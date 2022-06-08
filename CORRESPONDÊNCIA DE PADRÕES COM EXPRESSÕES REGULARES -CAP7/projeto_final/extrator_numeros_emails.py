@@ -12,9 +12,9 @@ honeRegex = re.compile(r'''(
 
 
 brasil_number = re.compile(r'''(
-                (\d{2}|\(\d{2}\))?   # ddd da área
-                (\s)?    # espaço ddd e numero
-                (\d?\d+)  # primeiros 4 dígitos
+                (\d{2}|\(\d{2}\))   # ddd da área
+                (\s)    # espaço ddd e numero
+                (\d?\d{4})  # primeiros 4 dígitos
                 (\s|-)   # separador dos digitos
                 (\d{4})  # ultimos 4 dígitos
 )''', re.VERBOSE)
@@ -30,3 +30,17 @@ email = re.compile(r'''(
     )''', re.VERBOSE)
 
 
+texto = str(pyperclip.paste())
+numeros_emails = []
+for groups in brasil_number.findall(texto):
+    numero_tel = ' '.join([groups[1], groups[3], groups[5]])
+    numeros_emails.append(numero_tel)
+for groups in email.findall(texto):
+    numeros_emails.append(groups[0])
+    
+if len(numeros_emails) > 0:
+    pyperclip.copy('\n'.join(numeros_emails))
+    print('texto copiado!')
+    print('\n'.join(numeros_emails))
+else:
+    print('Não foi encontrado nenhum número ou email')            
