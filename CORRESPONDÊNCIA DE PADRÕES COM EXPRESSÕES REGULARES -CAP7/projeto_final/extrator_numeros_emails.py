@@ -1,5 +1,6 @@
 import pyperclip, re
 
+
 honeRegex = re.compile(r'''(
     (\d{3}|\(\d{3}\))?  # código de área
     (\s|-|\.)?  # separador
@@ -8,6 +9,7 @@ honeRegex = re.compile(r'''(
     (\d{4}) # últimos 4 dígitos
     (\s*(ext|x|ext.)\s*(\d{2,5}))? # extensão
 )''', re.VERBOSE)
+
 
 brasil_number = re.compile(r'''(
                 (\d{2}|\(\d{2}\))?   # ddd da área
@@ -27,5 +29,4 @@ email = re.compile(r'''(
     
     )''', re.VERBOSE)
 
-mo = email.search('my email is andreluccag@unifei.edu.br').group()
-print(mo)
+
