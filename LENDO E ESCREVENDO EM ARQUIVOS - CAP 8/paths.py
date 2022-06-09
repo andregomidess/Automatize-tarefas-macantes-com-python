@@ -1,4 +1,5 @@
 import os
+import shelve
 
 p = os.path.join('usr', 'bin', 'spam')  #mostra o caminho
 print(p)
@@ -43,3 +44,37 @@ totalSize = 0
 for filename in os.listdir('/./home/andre'):
     totalSize = totalSize + os.path.getsize(os.path.join('/./home/andre', filename))    # vai pegar o tamanho total de tds os arquivos dentro desse diretorio
 print(totalSize)
+
+helloFile = open('/home/andre/hello', 'r')  # leitura de arquivos
+helloContent = helloFile.read()
+print(helloContent)
+
+sonetoFile = open('/home/andre/soneto29')
+sonetoContent = sonetoFile.readlines()
+print(sonetoContent)
+
+# escrita e adição de escrita em arquivo
+galoFile = open('galo.txt', 'w')    # 'w' vai zerar oq existe e criar um novo arquivo
+galoFile.write('Galão é gigante\n')
+
+galoFile.close()
+galoFile = open('galo.txt', 'a')    # 'a' vai editar oq ja existe
+galoFile.write('Hulk esmaga!!')
+
+galoFile.close()
+galoFile = open('galo.txt')
+texto = galoFile.read()
+galoFile.close()
+
+print(texto)
+
+shelfFile = shelve.open('mydata')
+cats = ['Zophie', 'Pooka', 'Simon']
+shelfFile['cats'] = cats
+shelfFile.close()
+shelfFile = shelve.open('mydata')
+l = list(shelfFile.keys())
+v = list(shelfFile.values())
+print(l)
+print(v)
+shelfFile.close()
