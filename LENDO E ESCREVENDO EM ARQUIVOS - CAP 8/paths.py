@@ -10,10 +10,10 @@ for filename in myFiles:
     
 p = os.getcwd() # epgar o diretorio de trabalho atual
 print(p)
-#os.chdir('/home/andre') # muda o diretorio
-#p = os.getcwd()
+os.chdir('/home/andre') # muda o diretorio
+p = os.getcwd()
 
-#g = os.makedirs('/home/andre/delicious/walnut/waffles')   # cria pastas
+g = os.makedirs('/home/andre/delicious/walnut/waffles')   # cria pastas
 
 p = os.path.abspath('..')
 print(p)
