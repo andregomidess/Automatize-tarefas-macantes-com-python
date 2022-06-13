@@ -1,4 +1,4 @@
-import os, re, shutil,send2trash, random
+import os, re, shutil, random
 ##################################################################
 
 #apenas para criar os arquivos
