@@ -1,4 +1,4 @@
-import os, shutil, zipfile
+import os, zipfile
 
 # função para criar o nome da pasta zip
 def backup_zip(pasta):
