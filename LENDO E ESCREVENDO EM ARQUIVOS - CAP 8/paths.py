@@ -42,7 +42,7 @@ print(p)
 
 totalSize = 0
 for filename in os.listdir('/./home/andre'):
-    totalSize = totalSize + os.path.getsize(os.path.join('/./home/andre', filename))    # vai pegar o tamanho total de tds os arquivos dentro desse diretorio
+    totalSize = totalSize + os.path.getsize(os.path.join('/home/andre', filename))    # vai pegar o tamanho total de tds os arquivos dentro desse diretorio
 print(totalSize)
 
 helloFile = open('/home/andre/hello', 'r')  # leitura de arquivos
