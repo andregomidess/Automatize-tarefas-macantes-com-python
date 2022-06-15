@@ -1,4 +1,6 @@
 import os, shutil
+from tkinter import *
+from tkinter import filedialog
 
 
 def copia_seletiva(pasta_origem, pasta_destino):
