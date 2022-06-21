@@ -20,11 +20,17 @@ import requests, bs4
 #    b = playFile.write(chunk)
 #print(b)
 
-res = requests.get('http://nostarch.com')
-res.raise_for_status()
-noStarchSoup = bs4.BeautifulSoup(res.text)
-print(type(noStarchSoup))
+#res = requests.get('http://nostarch.com')
+#res.raise_for_status()
+#noStarchSoup = bs4.BeautifulSoup(res.text)
+#print(type(noStarchSoup))
 
 arq_ex = open('exemplo.html')
-soup_ex = bs4.BeautifulSoup(arq_ex)
-print(type(soup_ex))
+#soup_ex = bs4.BeautifulSoup(arq_ex)
+#print(type(soup_ex))
+
+exampleSoup = bs4.BeautifulSoup(arq_ex.read())
+elems = exampleSoup.select('#author')
+print(elems[0].get_text())
+print(str(elems[0]))
+print(elems[0].attrs)   # retorna um dicionario com as tags id
