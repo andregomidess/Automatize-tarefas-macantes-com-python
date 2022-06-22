@@ -20,7 +20,7 @@ while not url.endswith('#'):    # se tem um # no final da url chegou na primeira
        for chunk in res.iter_content(100000):
            imagem.write(chunk)
        imagem.close()
-    prev_link = soup.select('a[rel="prev"]')[0]
+    prev_link = soup.select('a[rel="prev"]')[0] # vai pegar o link do botão prev que no caso é outra img
     url = 'http://xkcd.com' + prev_link.get('href')  
             
     
