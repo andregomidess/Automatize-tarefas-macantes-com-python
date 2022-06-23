@@ -9,6 +9,7 @@ while not url.endswith('#'):    # se tem um # no final da url chegou na primeira
     res.raise_for_status()  # checando se tem algum erro no download da página
     soup = bs4.BeautifulSoup(res.text, 'html.parser')
     conteudo_tirinha = soup.select('#comic img')    # o '#' vai pegar tudo q tem a id="comic" no html, apos isso vai acessar a tag img
+    print(conteudo_tirinha)
     if conteudo_tirinha == []:
         print('Não foi encontrado nenhuma tirinha!')
     else:
